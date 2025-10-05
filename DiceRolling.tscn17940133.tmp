@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7umsmk31dcla"]
+
+[ext_resource type="PackedScene" uid="uid://bwbfn5ijqou2" path="res://Dice.tscn" id="1_vamwt"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fnau0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ie1jo"]
+
+[sub_resource type="Skin" id="Skin_y880c"]
+
+[sub_resource type="GDScript" id="GDScript_fnau0"]
+resource_name = "ButtonPress"
+script/source = "extends Node3D
+
+var rng = RandomNumberGenerator.new()
+var dirx
+var diry
+var dirz
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.56838953, 0.82275957, 0, -0.82275957, 0.56838953, 0, 25.833641, 13.249548)
+
+[node name="Platform" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("WorldBoundaryShape3D_fnau0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/CollisionShape3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ie1jo")
+skin = SubResource("Skin_y880c")
+
+[node name="Dice" parent="." instance=ExtResource("1_vamwt")]
+
+[node name="Node3D" type="Node3D" parent="."]
+script = SubResource("GDScript_fnau0")
+
+[node name="SubViewport" type="SubViewport" parent="Node3D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(92, 23)
+
+[node name="Button" type="Button" parent="Node3D/SubViewport"]
+offset_right = 146.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 25
+text = "Roll the Die"
+
+[connection signal="pressed" from="Node3D/SubViewport/Button" to="Dice" method="_on_button_pressed"]
+[connection signal="pressed" from="Node3D/SubViewport/Button" to="Node3D" method="_on_button_pressed"]
