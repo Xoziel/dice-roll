@@ -1,0 +1,316 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7umsmk31dcla"]
+
+[ext_resource type="PackedScene" uid="uid://ddscjhaqd0ot5" path="res://Models/Metal Dice.glb" id="1_fnau0"]
+
+[sub_resource type="GDScript" id="GDScript_54ycf"]
+resource_name = "GlobalScoreConnector"
+script/source = "extends Node3D
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Global.Score = 0
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vamwt"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fnau0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ie1jo"]
+
+[sub_resource type="Skin" id="Skin_y880c"]
+
+[sub_resource type="GDScript" id="GDScript_y880c"]
+resource_name = "Die1Rotation"
+script/source = "extends RigidBody3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var x = randf_range(0, TAU)
+	var y = randf_range(0, TAU)
+	var z = randf_range(0, TAU)
+	rotation = Vector3(x, y, z)
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			rotation = Vector3(0, 0, 0)
+			position = Vector3(-2, 20, 2)
+			var x = randf_range(0, TAU)
+			var y = randf_range(0, TAU)
+			var z = randf_range(0, TAU)
+			rotation = Vector3(x, y, z)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54ycf"]
+
+[sub_resource type="GDScript" id="GDScript_e2aln"]
+resource_name = "DieA-1"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="GDScript" id="GDScript_vamwt"]
+resource_name = "DieA-2"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="GDScript" id="GDScript_fnau0"]
+resource_name = "DieA-3"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="GDScript" id="GDScript_ie1jo"]
+resource_name = "DieA-4"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="GDScript" id="GDScript_el5x6"]
+resource_name = "DieA-5"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="GDScript" id="GDScript_tgtw5"]
+resource_name = "DieA-6"
+script/source = "extends RayCast3D
+
+var Ready = true
+
+func _process(delta: float) -> void:
+	await get_tree().create_timer(5).timeout
+	if is_colliding():
+		if is_zero_approx(0):
+			if Ready == true:
+				print(\"Rolled a 2\")
+				Global.Score + 2
+				Ready = false
+				return
+
+
+
+func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed == true:
+			Ready = true
+			return
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vamwt"]
+size = Vector3(1.4906616, 0.4885254, 0.26501465)
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_54ycf")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8830377, 0.46930203, 0, -0.46930203, 0.8830377, 0, 14.01141, 9.546114)
+texture = SubResource("ViewportTexture_vamwt")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5683896, 0.8227596, 0, -0.8227596, 0.5683896, 0, 15.395199, 13.249548)
+
+[node name="Platform" type="StaticBody3D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("WorldBoundaryShape3D_fnau0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/CollisionShape3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ie1jo")
+skin = SubResource("Skin_y880c")
+
+[node name="True Die 1" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.99985164, -0.017225757, 0, 0.017225757, -0.99985164, 0, 0, 0, 1, 0, 20, 0)
+gravity_scale = 2.3
+script = SubResource("GDScript_y880c")
+
+[node name="Metal Dice2" parent="True Die 1" instance=ExtResource("1_fnau0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="True Die 1"]
+shape = SubResource("BoxShape3D_54ycf")
+
+[node name="RollA-1" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(1.0000001, 4.656613e-10, 0, -4.656613e-10, 1.0000001, 0, 0, 0, 1, 0, 0.10000038, 0)
+exclude_parent = false
+target_position = Vector3(0, 0.45, 0)
+collide_with_areas = true
+script = SubResource("GDScript_e2aln")
+
+[node name="RollA-2" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(1.0000005, 9.313226e-10, 0, -9.313226e-10, 1.0000005, 0, 0, 0, 1, -0.1, 0, 0)
+exclude_parent = false
+target_position = Vector3(-0.45, 0, 0)
+collide_with_areas = true
+script = SubResource("GDScript_vamwt")
+
+[node name="RollA-3" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(1.0000004, 9.313226e-10, 0, -9.313226e-10, 1.0000004, 0, 0, 0, 1, 0.1, 0, 0)
+exclude_parent = false
+target_position = Vector3(0.45, 0, 0)
+collide_with_areas = true
+script = SubResource("GDScript_fnau0")
+
+[node name="RollA-4" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(1.0000005, 9.313226e-10, 0, -9.313226e-10, 1.0000005, 0, 0, 0, 1, 0, 0, -0.1)
+exclude_parent = false
+target_position = Vector3(0, 0, -0.45)
+collide_with_areas = true
+script = SubResource("GDScript_ie1jo")
+
+[node name="RollA-5" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(1.0000005, 9.313226e-10, 0, -9.313226e-10, 1.0000005, 0, 0, 0, 1, 0, 0, 0.1)
+exclude_parent = false
+target_position = Vector3(0, 0, 0.45)
+collide_with_areas = true
+script = SubResource("GDScript_el5x6")
+
+[node name="RollA-6" type="RayCast3D" parent="True Die 1"]
+transform = Transform3D(-1.0000002, -8.74228e-08, 0, 8.74228e-08, -1.0000002, 0, 0, 0, 1, 0, -0.1, 0)
+exclude_parent = false
+target_position = Vector3(0, 0.45, 0)
+collide_with_areas = true
+script = SubResource("GDScript_tgtw5")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(159, 42)
+
+[node name="Button" type="Button" parent="SubViewport"]
+offset_right = 108.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 25
+text = "Roll the Dice"
+
+[node name="Area3D" type="Area3D" parent="SubViewport/Button"]
+transform = Transform3D(1, 0, 0, 0, 1.6766382, 0.70495015, 0, -0.9028144, 1.3091799, 0, 25.522331, 12.763976)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Button/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.88303775, 0.46930206, 0, -0.469302, 0.8830378, 0.012359619, -4.9740314, -3.299571)
+shape = SubResource("BoxShape3D_vamwt")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.7071068, -0.45640743, 0.5400854, -6.677317e-08, 0.76379603, 0.6454577, -0.7071067, -0.45640755, 0.5400854, 59.273438, 36.94308, 41.546867)
+light_energy = 70.0
+light_indirect_energy = 6.714
+light_volumetric_fog_energy = 8.086
+light_size = 0.414
+light_specular = 6.671
+spot_range = 149.08496
+spot_angle = 23.83
+
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-1" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-2" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-3" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-4" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-5" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="SubViewport/Button/Area3D" to="True Die 1/RollA-6" method="_on_area_3d_input_event"]
