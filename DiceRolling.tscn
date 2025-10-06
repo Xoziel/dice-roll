@@ -14,7 +14,7 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 			if Global.Score1 != Global.Score2:
 				Global.Total = Global.Score1 + Global.Score2 + Global.Total
 			elif Global.Score1 == Global.Score2:
-				Global.Total = (Global.Score1 + Global.Score2 * 2) + Global.Total
+				Global.Total = (Global.Score1 * 2) + (Global.Score2 * 2) + Global.Total
 				if Global.Score1 + Global.Score2 == 2:
 					Global.Total = 0
 "
